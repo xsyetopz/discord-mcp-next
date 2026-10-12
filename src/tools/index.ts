@@ -9,6 +9,7 @@ import { permissionTools } from "./permissions.ts";
 import { roleTools } from "./roles.ts";
 import { serverTools } from "./server.ts";
 import { threadTools } from "./threads.ts";
+import { voiceTools } from "./voice.ts";
 
 /** Every tool of the server, before the allowlist and the denylist apply. */
 export const allTools: readonly Tool[] = [
@@ -22,4 +23,5 @@ export const allTools: readonly Tool[] = [
   ...channelTools,
   ...categoryTools,
   ...permissionTools,
+  ...voiceTools,
 ];
