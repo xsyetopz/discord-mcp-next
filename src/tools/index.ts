@@ -1,4 +1,5 @@
 import type { Tool } from "../tool.ts";
+import { dmTools } from "./dms.ts";
 import { messageTools } from "./messages.ts";
 import { serverTools } from "./server.ts";
 import { threadTools } from "./threads.ts";
@@ -8,4 +9,5 @@ export const allTools: readonly Tool[] = [
   ...serverTools,
   ...messageTools,
   ...threadTools,
+  ...dmTools,
 ];
