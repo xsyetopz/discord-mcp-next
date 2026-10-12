@@ -11,6 +11,7 @@ import { roleTools } from "./roles.ts";
 import { serverTools } from "./server.ts";
 import { threadTools } from "./threads.ts";
 import { voiceTools } from "./voice.ts";
+import { webhookTools } from "./webhooks.ts";
 
 /** Every tool of the server, before the allowlist and the denylist apply. */
 export const allTools: readonly Tool[] = [
@@ -26,4 +27,5 @@ export const allTools: readonly Tool[] = [
   ...permissionTools,
   ...voiceTools,
   ...forumTools,
+  ...webhookTools,
 ];
