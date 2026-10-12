@@ -1,24 +1,15 @@
-FROM maven:3.9.6-amazoncorretto-17 AS build
-
+FROM oven/bun:1.4.3-alpine AS deps
 WORKDIR /app
+COPY package.json bun.lock bunfig.toml ./
+RUN bun install --frozen-lockfile --production --ignore-scripts
 
-COPY pom.xml .
+FROM oven/bun:1.4.3-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json tsconfig.json ./
 COPY src ./src
 
-RUN mvn clean package -DskipTests
-
-FROM amazoncorretto:17-alpine
-
-WORKDIR /app
-
-COPY --from=build /app/target/*.jar app.jar
-
-ENV DISCORD_TOKEN=""
-ENV DISCORD_GUILD_ID=""
-
-EXPOSE 8085
-
-HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 \
-  CMD wget -q -O - http://127.0.0.1:8085/actuator/health | grep -q '"status":"UP"' || exit 1
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# The default transport is stdio, so the image has no HTTP health check; docker-compose.yml adds one for HTTP mode.
+USER bun
+ENTRYPOINT ["bun", "run", "src/main.ts"]
