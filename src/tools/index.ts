@@ -3,6 +3,7 @@ import { dmTools } from "./dms.ts";
 import { memberTools } from "./members.ts";
 import { messageTools } from "./messages.ts";
 import { moderationTools } from "./moderation.ts";
+import { roleTools } from "./roles.ts";
 import { serverTools } from "./server.ts";
 import { threadTools } from "./threads.ts";
 
@@ -14,4 +15,5 @@ export const allTools: readonly Tool[] = [
   ...dmTools,
   ...memberTools,
   ...moderationTools,
+  ...roleTools,
 ];
