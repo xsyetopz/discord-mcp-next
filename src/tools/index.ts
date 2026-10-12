@@ -3,6 +3,7 @@ import { categoryTools } from "./categories.ts";
 import { channelTools } from "./channels.ts";
 import { dmTools } from "./dms.ts";
 import { emojiTools } from "./emojis.ts";
+import { eventTools } from "./events.ts";
 import { forumTools } from "./forums.ts";
 import { inviteTools } from "./invites.ts";
 import { memberTools } from "./members.ts";
@@ -32,4 +33,5 @@ export const allTools: readonly Tool[] = [
   ...webhookTools,
   ...inviteTools,
   ...emojiTools,
+  ...eventTools,
 ];
